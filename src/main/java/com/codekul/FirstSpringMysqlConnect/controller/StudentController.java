@@ -39,4 +39,10 @@ public class StudentController {
         student.saveData(stud);
         return "Data saved Successfully";
     }
+
+    @RequestMapping(value = "/update")
+    public String updateStudent(){
+       student.updateData();
+        return "Data updated successfully";
+    }
 }

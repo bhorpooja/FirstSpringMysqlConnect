@@ -15,4 +15,6 @@ public interface StudentRepo {
 
     void saveData(Student student);
 
+    void updateData();
+
 }

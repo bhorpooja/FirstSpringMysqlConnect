@@ -14,8 +14,7 @@ import java.util.List;
  * Created by pooja on 31/10/17.
  */
 @Repository
-public class StudentImpl implements StudentRepo
-{
+public class StudentImpl implements StudentRepo {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
@@ -23,25 +22,32 @@ public class StudentImpl implements StudentRepo
     @Override
     public List<Student> getData() {
 
-        String sql="select * from Student;";
-        List<Student> list=
-                jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(Student.class));
+        String sql = "select * from Student;";
+        List<Student> list =
+                jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Student.class));
         return list;
     }
 
     @Override
     public Student getStudent(Integer id) {
 
-        String sql="select * from Student where id=?";
+        String sql = "select * from Student where id=?;";
         Student student =
-                jdbcTemplate.queryForObject(sql,new Object[]{id},new int[]{Types.INTEGER},new BeanPropertyRowMapper<>(Student.class));
+                jdbcTemplate.queryForObject(sql, new Object[]{id}, new int[]{Types.INTEGER}, new BeanPropertyRowMapper<>(Student.class));
 
         return student;
     }
 
     @Override
     public void saveData(Student student) {
-        String sql="insert into Student values(?,?,?)";
-        jdbcTemplate.update(sql,new Object[]{student.getId(),student.getName(),student.getCity()},new int[]{Types.INTEGER,Types.VARCHAR,Types.VARCHAR});
+        String sql = "insert into Student values(?,?,?);";
+        jdbcTemplate.update(sql, new Object[]{student.getId(), student.getName(), student.getCity()}, new int[]{Types.INTEGER, Types.VARCHAR, Types.VARCHAR});
+    }
+
+    @Override
+    public void updateData() {
+        String sql = "update Student set city='Delhi' where name='pooja';";
+        jdbcTemplate.update(sql);
     }
 }
+
