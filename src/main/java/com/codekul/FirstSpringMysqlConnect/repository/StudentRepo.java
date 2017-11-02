@@ -11,6 +11,8 @@ public interface StudentRepo {
 
     List<Student> getData();
 
-//    Student getStudent(Integer id);
+    Student getStudent(Integer id);
+
+    void saveData(Student student);
 
 }

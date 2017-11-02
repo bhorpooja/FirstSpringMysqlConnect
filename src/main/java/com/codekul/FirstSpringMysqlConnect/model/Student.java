@@ -3,19 +3,20 @@ package com.codekul.FirstSpringMysqlConnect.model;
 /**
  * Created by pooja on 31/10/17.
  */
+
 public class Student {
     Integer id;
     String name;
     String city;
 
-    @Override
-    public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", city='" + city + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Student{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", city='" + city + '\'' +
+//                '}';
+//    }
 
     public Integer getId() {
         return id;
