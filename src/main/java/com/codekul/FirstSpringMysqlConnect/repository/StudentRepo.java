@@ -19,4 +19,6 @@ public interface StudentRepo {
 
     void deleteData(Integer id);
 
+    void updateStud(Integer id,String name);
+
 }

@@ -51,4 +51,10 @@ public class StudentController {
         student.deleteData(id);
         return "data deleted successfully";
     }
+
+    @RequestMapping(value = "/update/{id}/{name}")
+    public String deleteStud(@PathVariable Integer id,@PathVariable String name){
+        student.updateStud(id,name);
+        return "data updated successfully";
+    }
 }
