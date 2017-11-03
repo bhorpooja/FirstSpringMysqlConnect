@@ -34,15 +34,21 @@ public class StudentController {
         return stud;
     }
 
-    @RequestMapping(value = "/save")
-    public String saveStudent(@RequestBody Student stud){
-        student.saveData(stud);
-        return "Data saved Successfully";
+    @RequestMapping(value = "/insert")
+    public String insertStudent(@RequestBody Student stud){
+        student.insertData(stud);
+        return "Data inserted Successfully";
     }
 
     @RequestMapping(value = "/update")
     public String updateStudent(){
        student.updateData();
         return "Data updated successfully";
+    }
+
+    @RequestMapping(value = "/delete/{id}")
+    public String deleteStudent(@PathVariable Integer id){
+        student.deleteData(id);
+        return "data deleted successfully";
     }
 }

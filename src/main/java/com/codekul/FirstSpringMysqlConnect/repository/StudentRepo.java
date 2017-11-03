@@ -13,8 +13,10 @@ public interface StudentRepo {
 
     Student getStudent(Integer id);
 
-    void saveData(Student student);
+    void insertData(Student student);
 
     void updateData();
+
+    void deleteData(Integer id);
 
 }

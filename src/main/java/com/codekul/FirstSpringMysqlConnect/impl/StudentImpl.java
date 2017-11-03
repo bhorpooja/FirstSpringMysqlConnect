@@ -5,6 +5,7 @@ import com.codekul.FirstSpringMysqlConnect.repository.StudentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Types;
@@ -39,15 +40,24 @@ public class StudentImpl implements StudentRepo {
     }
 
     @Override
-    public void saveData(Student student) {
+    public void insertData(Student student) {
         String sql = "insert into Student values(?,?,?);";
         jdbcTemplate.update(sql, new Object[]{student.getId(), student.getName(), student.getCity()}, new int[]{Types.INTEGER, Types.VARCHAR, Types.VARCHAR});
     }
 
     @Override
     public void updateData() {
-        String sql = "update Student set city='Delhi' where name='pooja';";
+        String sql = "update Student set city='Mumbai' where name='ashish';";
         jdbcTemplate.update(sql);
     }
+
+    @Override
+    public void deleteData(Integer id) {
+        String sql="delete from Student where id=?;";
+        jdbcTemplate.update(sql,new Object[]{id},new int[]{Types.INTEGER});
+
+    }
+
+
 }
 
