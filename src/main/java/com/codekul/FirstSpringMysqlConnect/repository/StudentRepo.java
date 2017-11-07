@@ -15,6 +15,8 @@ public interface StudentRepo {
 
     void insertData(Student student);
 
+    void insertStudent(List<Student> student);
+
     void updateData();
 
     void deleteData(Integer id);

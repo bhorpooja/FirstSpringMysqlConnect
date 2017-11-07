@@ -40,6 +40,14 @@ public class StudentController {
         return "Data inserted Successfully";
     }
 
+    @RequestMapping(value = "/studentlist")
+    public String insertStudentList(@RequestBody List<Student> stud){
+
+        student.insertStudent(stud);
+
+        return "data inserted successfully...";
+    }
+
     @RequestMapping(value = "/update")
     public String updateStudent(){
        student.updateData();

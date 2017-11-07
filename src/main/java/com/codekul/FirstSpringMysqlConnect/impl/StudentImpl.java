@@ -3,10 +3,13 @@ package com.codekul.FirstSpringMysqlConnect.impl;
 import com.codekul.FirstSpringMysqlConnect.model.Student;
 import com.codekul.FirstSpringMysqlConnect.repository.StudentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
 
@@ -15,6 +18,9 @@ import java.util.List;
  */
 @Repository
 public class StudentImpl implements StudentRepo {
+
+
+
     @Autowired
     JdbcTemplate jdbcTemplate;
 
@@ -42,6 +48,28 @@ public class StudentImpl implements StudentRepo {
     public void insertData(Student student) {
         String sql = "insert into Student values(?,?,?);";
         jdbcTemplate.update(sql, new Object[]{student.getId(), student.getName(), student.getCity()}, new int[]{Types.INTEGER, Types.VARCHAR, Types.VARCHAR});
+    }
+
+    @Override
+    public void insertStudent(List<Student> student) {
+
+        String sql="insert into Student values(?,?,?);";
+//
+        jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
+            @Override
+            public void setValues(PreparedStatement ps, int i) throws SQLException {
+                Student stud=student.get(i);
+                ps.setInt(1,stud.getId());
+                ps.setString(2,stud.getName());
+                ps.setString(3,stud.getCity());
+
+            }
+
+            @Override
+            public int getBatchSize() {
+                return student.size();
+            }
+        });
     }
 
     @Override
