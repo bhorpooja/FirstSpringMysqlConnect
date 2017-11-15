@@ -3,6 +3,7 @@ package com.codekul.FirstSpringMysqlConnect.repository;
 import com.codekul.FirstSpringMysqlConnect.model.Student;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by pooja on 31/10/17.
@@ -22,5 +23,7 @@ public interface StudentRepo {
     void deleteData(Integer id);
 
     void updateStud(Integer id,String name);
+
+    List<Map<String,Object>> innerJoin();
 
 }

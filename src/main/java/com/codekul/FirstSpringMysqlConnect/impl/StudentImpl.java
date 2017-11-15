@@ -7,11 +7,11 @@ import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by pooja on 31/10/17.
@@ -54,7 +54,7 @@ public class StudentImpl implements StudentRepo {
     public void insertStudent(List<Student> student) {
 
         String sql="insert into Student values(?,?,?);";
-//
+
         jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
             @Override
             public void setValues(PreparedStatement ps, int i) throws SQLException {
@@ -89,6 +89,13 @@ public class StudentImpl implements StudentRepo {
     public void updateStud(Integer id, String name) {
         String sql="update Student set name=? where id=?;";
         jdbcTemplate.update(sql,new Object[]{name,id},new int[]{Types.VARCHAR,Types.INTEGER});
+    }
+
+    @Override
+    public List<Map<String, Object>> innerJoin() {
+        String sql=" select Student.id,Student.name,Student.city,Dept.dept_id,Dept.dept_name from Student inner join Dept on Student.dept_id=Dept.dept_id;";
+        List<Map<String,Object>> list=jdbcTemplate.queryForList(sql);
+        return list;
     }
 
 
