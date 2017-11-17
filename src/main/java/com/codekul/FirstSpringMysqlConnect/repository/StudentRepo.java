@@ -10,20 +10,21 @@ import java.util.Map;
  */
 public interface StudentRepo {
 
-    List<Student> getData();
+    List<Student> getStudentList();
 
     Student getStudent(Integer id);
 
-    void insertData(Student student);
+    void insertStudent(Student student);
 
-    void insertStudent(List<Student> student);
+    void insertStudentList(List<Student> student);
 
-    void updateData();
+    void deleteStudent(Integer id);
 
-    void deleteData(Integer id);
-
-    void updateStud(Integer id,String name);
+    void updateStudent(Integer id,String name);
 
     List<Map<String,Object>> innerJoin();
+
+    String insertStud(Student student);
+
 
 }

@@ -18,49 +18,43 @@ public class StudentController {
     @Autowired
     StudentImpl student;
 
-    @RequestMapping(value = "/listofstudent")
-    public List<Student> getStudentData(){
+    @RequestMapping(value = "/getStudentList")
+    public List<Student> getStudentList(){
 
-        List<Student> list=student.getData();
+        List<Student> list=student.getStudentList();
 
         return list;
     }
 
-    @RequestMapping(value = "/student/{id}")
+    @GetMapping(value = "/getStudent/{id}")
     public Student getStudent(@PathVariable Integer id){
         Student stud=student.getStudent(id);
         return stud;
     }
 
-    @RequestMapping(value = "/insert")
+    @PostMapping(value = "/insertStudent")
     public String insertStudent(@RequestBody Student stud){
-        student.insertData(stud);
+        student.insertStudent(stud);
         return "Data inserted Successfully";
     }
 
-    @RequestMapping(value = "/studentlist")
+    @PostMapping(value = "/insertStudentList")
     public String insertStudentList(@RequestBody List<Student> stud){
 
-        student.insertStudent(stud);
+        student.insertStudentList(stud);
 
         return "data inserted successfully...";
     }
 
-    @RequestMapping(value = "/update")
-    public String updateStudent(){
-       student.updateData();
-        return "Data updated successfully";
-    }
-
-    @RequestMapping(value = "/delete/{id}")
+    @PostMapping(value = "/deleteStudent/{id}")
     public String deleteStudent(@PathVariable Integer id){
-        student.deleteData(id);
+        student.deleteStudent(id);
         return "data deleted successfully";
     }
 
-    @RequestMapping(value = "/update/{id}/{name}")
+    @PostMapping(value = "/updateStudent/{id}/{name}")
     public String deleteStud(@PathVariable Integer id,@PathVariable String name){
-        student.updateStud(id,name);
+        student.updateStudent(id,name);
         return "data updated successfully";
     }
 
@@ -69,4 +63,13 @@ public class StudentController {
         List<Map<String,Object>> list=student.innerJoin();
         return list;
     }
+
+
+    @PostMapping(value = "/insertStud")
+    public String insertStud(@RequestBody  Student stud){
+        return  student.insertStud(stud);
+    }
+
+
+
 }

@@ -5,18 +5,13 @@ package com.codekul.FirstSpringMysqlConnect.model;
  */
 
 public class Student {
+
+
     Integer id;
     String name;
     String city;
+    Integer dept_id;
 
-//    @Override
-//    public String toString() {
-//        return "Student{" +
-//                "id=" + id +
-//                ", name='" + name + '\'' +
-//                ", city='" + city + '\'' +
-//                '}';
-//    }
 
     public Integer getId() {
         return id;
@@ -41,4 +36,22 @@ public class Student {
     public void setCity(String city) {
         this.city = city;
     }
+
+    public Integer getDept_id() { return dept_id; }
+
+    public void setDept_id(Integer dept_id) {
+        this.dept_id = dept_id;
+    }
+
+
+    public Dept getDept() {
+        return dept;
+    }
+
+    public void setDept(Dept dept) {
+        this.dept = dept;
+    }
+
+    Dept dept;
 }
+
