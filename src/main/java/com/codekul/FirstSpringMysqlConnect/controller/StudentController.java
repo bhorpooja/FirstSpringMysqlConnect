@@ -46,7 +46,7 @@ public class StudentController {
         return "data inserted successfully...";
     }
 
-    @PostMapping(value = "/deleteStudent/{id}")
+    @DeleteMapping(value = "/deleteStudent/{id}")
     public String deleteStudent(@PathVariable Integer id){
         student.deleteStudent(id);
         return "data deleted successfully";
